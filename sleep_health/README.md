@@ -1,0 +1,3 @@
+Data is from https://www.kaggle.com/datasets/jayjoshi37/sleep-screen-time-and-stress-analysis/code
+
+This project will be built with Python and organized via a Makefile. More to come...
