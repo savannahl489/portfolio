@@ -3,7 +3,7 @@ READ FIRST: This project is a personal project and for demonstrating skills and 
 This project is to showcase my abilities in Python. It will be organized via a Makefile for easy documentation and future work.
 
 =================================================================================================
-Initial EDA and Brainstorming data is from https://www.kaggle.com/datasets/jayjoshi37/sleep-screen-time-and-stress-analysis/code
+Initial EDA data is from https://www.kaggle.com/datasets/jayjoshi37/sleep-screen-time-and-stress-analysis/code
 
 Data description: 15000 synthetic observations of 13 variables. Most variable names are self-explanatory, but a few are multi-class categorical variables on scales. The official data card info will be included in the final report. For now, however, the variables that are rated on scales are included below for convenience.
 
@@ -15,6 +15,13 @@ Data description: 15000 synthetic observations of 13 variables. Most variable na
 
 ====================================================================================================
 
+Sleep_health_and_lifestyle_dataset.csv: https://www.kaggle.com/datasets/orvile/health-and-sleep-relation-2024
+
+Still in the same topic area as the previous dataset, except it seems to not be synthetically generated (data description says that it was produced with funding from the University of Oxford). I guess more exploration will reveal whether that is true or not.
+
+
+====================================================================================================
+
 How this project is organized (as of currently):
 
-- Initial brainstorming and informal EDA is currently contained within the Jupyter Notebook 'Initial_EDA_and_Brainstorming' with the data described above. This being said, at the end of the notebook, I made a note about how the data might be a little too clean / manufactured. Thus, I am in progress of finding a new dataset.
+- Initial brainstorming and informal EDA is currently contained within the Jupyter Notebook 'Initial_EDA_and_Brainstorming' with the data described above. This being said, at the end of the notebook, I made a note about how the data might be a little too clean / manufactured. Thus, my analysis from this dataset onwards will be on the new data: "Sleep_health_and_lifestyle_dataset.csv"
