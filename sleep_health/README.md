@@ -2,7 +2,8 @@ READ FIRST: This project is a personal project and for demonstrating skills and 
 
 This project is to showcase my abilities in Python. It will be organized via a Makefile for easy documentation and future work.
 
-=================================================================================================
+======================================================================================
+
 Initial EDA data is from https://www.kaggle.com/datasets/jayjoshi37/sleep-screen-time-and-stress-analysis/code
 
 Data description: 15000 synthetic observations of 13 variables. Most variable names are self-explanatory, but a few are multi-class categorical variables on scales. The official data card info will be included in the final report. For now, however, the variables that are rated on scales are included below for convenience.
