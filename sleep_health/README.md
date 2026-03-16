@@ -14,14 +14,14 @@ Data description: 15000 synthetic observations of 13 variables. Most variable na
 
 ***** Important Note: while the scales are this range, the observations themselves are continuous within those intervals.
 
-====================================================================================================
+=========================================================================================
 
 Sleep_health_and_lifestyle_dataset.csv: https://www.kaggle.com/datasets/orvile/health-and-sleep-relation-2024
 
 Still in the same topic area as the previous dataset, except it seems to not be synthetically generated (data description says that it was produced with funding from the University of Oxford). I guess more exploration will reveal whether that is true or not.
 
 
-====================================================================================================
+=========================================================================================
 
 How this project is organized (as of currently):
 
