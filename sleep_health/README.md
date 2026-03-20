@@ -26,3 +26,5 @@ Still in the same topic area as the previous dataset, except it seems to not be 
 How this project is organized (as of currently):
 
 - Initial brainstorming and informal EDA is currently contained within the Jupyter Notebook 'Initial_EDA_and_Brainstorming' with the data described above. This being said, at the end of the notebook, I made a note about how the data might be a little too clean / manufactured. Thus, my analysis from this dataset onwards will be on the new data: "Sleep_health_and_lifestyle_dataset.csv"
+
+- Second EDA: Contains the formalized EDA for the "Sleep_health_and_lifestyle_dataset.csv"; currently in progress.
