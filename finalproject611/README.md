@@ -1,5 +1,7 @@
-READ FIRST: I completed this project as the final project to a class (BIOS 611) at UNC-CH. This was an individual project and is completed in accordance to the requirements of the course project. Thus, the language and structure within the report may not be typical of that of a formal industry-level project.
-====================================================================================================
+READ FIRST: 
+
+This project was originally completed as the final project to a class (BIOS 611) at UNC-CH. This was an individual project and has since been edited to showcase the skills I have developed in R.
+==========================================================================================
 
 Maximizing Impact: Social Media Campaign Effectiveness
 ======================================================

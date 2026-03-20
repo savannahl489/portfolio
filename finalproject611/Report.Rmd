@@ -10,9 +10,13 @@ date: "2025-10-30"
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-# Data Introduction:
+# Project Introduction:
 
-The source data is in the folder source_data and is from Kaggle. I chose this collection of datasets for three primary reasons. The first being its relation to the marketing industry and the second being that it is a collection of smaller datasets rather than one huge dataset. The third is cleanliness of the datasets themselves. 
+This project seeks to understand the underlying patterns behind what makes social media campaigns successful. I will attempt to find patterns in user behavior, their demographics, as well as what companies can do to increase visibility. The data for which this project is based is synthetic data mimicking what information companies might expect to have access to with real-world social media campaigns.
+
+## Data Introduction
+
+The source data is in the folder source_data and is from Kaggle. I chose this collection of datasets for two primary reasons. The first is that it is a collection of smaller datasets rather than one huge dataset. This allows for greater data manipulation and flexibility. Additionally, it mimicks the relational database structure that larger organizations will store such data in. Secondly, the datasets themselves are rather clean and mostly ready for use. Rather than spending hours cleaning data, I am able to focus on analysis of this dataset and present results applicable to real-world situations. 
 
 This data is comprised of four datasets: Ad Events, Ads, Users, and Campaigns. Within Ad Events, each observation is an user interaction with one ad associated with a campaign. The Ad Events dataset provides information on the time of interaction (day of week and time of day), type of interaction, user id, ad id, campaign id, and platform of interaction for each event. The users, ads and campaigns associated with the ad events are in their respective datasets. The data in Users is the demographic information of each user (user interests, gender, location, and age). The observations within Ads are the individual ads within each campaign, providing information on the campaign to which it belongs to, the platform and type of ad, as well as the target audience (gender, age, and interests). The Campaign dataset contains the name of each campaign, duration and time the campaign was run, and the budget of the campaign for each of the 50 campaigns run. 
 
@@ -27,14 +31,14 @@ Data cleaning was done to combine certain datasets (derived_data/comp1.csv and d
 
    * Some users were found to have the same user_id, so for the purposes of my analysis, I assumed there were interactions from both users with an ad if their user id appeared.
 
-All analysis following will use these six cleaned data sets. In terms of variables I was particularly interested in for my analysis, I focused on the target population criteria within the Ads dataset as well as user demographics and interests within the Users dataset. I also examined the total budget given to each campaign and the durations of campaigns.
+All analysis will use these six clean datasets. In terms of variables I was particularly interested in for my analysis, I focused on the target population criteria within the Ads dataset as well as user demographics and interests within the Users dataset. I also examined the total budget given to each campaign and the durations of campaigns.
 
 # Data Exploration (EDA):
 
-This EDA will be a composite of a couple of sections, designed to answer specific questions. Looking at the composite data, it seems as though the data is very clean (no NAs and no glaring errors in data entries), which makes sense as the data description from kaggle did mention that it was very clean and easy to work with. Just looking at the datasets overall, I believe that this data likely originates from one of two sources. It is either human generated (artificial) or real data already pre-processed by an experienced data handler as the encodings for categorical variables like target_interests from the ads.csv dataset (source data) and the interests in the users.csv dataset (source data) columns match exactly in terms of categories. This is highly unlikely in the real world and thus leads to such guesses.
+This EDA will be a composite of several sections, designed to answer specific questions. Looking at the composite data, the usability of the data is good (no NAs and no glaring errors in data entries). From a broad examination of the data, it is evident that the data is synthetic. The encodings for categorical variables like target_interests from the ads.csv dataset (source data) and the interests in the users.csv dataset (source data) columns match exactly in terms of categories. This is highly unlikely in the real data.
 
 
-The rest of this EDA will be split into three sections, aiming to answer the following three questions:
+The rest of this EDA will be composed of three sections, aiming to answer each of the following three questions:
 0.1) Are there certain users who out-interact the other users (outliers in terms of number of interactions)?
 0.2) Do certain interests get more interactions online? Perhaps technology for instance?
 0.3) What does the distribution of age of users look like?
@@ -45,7 +49,7 @@ To answer this question, I wanted to first visualize a distribution of the numbe
 
 ![The Distribution of User Interaction Counts](figures/interaction_count_histogram.png)
 
-The histogram shows a huge range for the x axis, which makes me question why when all the observations seem grouped to one side. Thus, I am making a boxplot of this data to see what in the world is going on.
+The histogram shows a huge range for the x axis, which makes me question why when all the observations seem grouped to one side. Likely, this is due to a small number of outliers that do not show up in the histogram due to the scale of the y-axis. Thus, I generated a boxplot to visualize the outliers better.
 
 ![Boxplot of the Distribution of User Interaction Counts](figures/interaction_count_boxplot.png)
 
@@ -54,19 +58,19 @@ It looks like there are a handful of users who are highly interactive with these
 
 ### Gender
 
-Looking at gender, I mainly want to see if there is a significant difference in terms of count between the genders. I decided to use tables to show this:
+Looking at gender, I mainly want to find out if there is a significant difference in count among the genders. The tables below display the distributions.
 
 ![Distribution in Gender of Users Who Over-Interacted](figures/overinteract_gender.png)
 ![Distribution in Gender of Users Who Under-Interacted](figures/underinteract_gender.png)
 
-For those who underinteracted, it is pretty difficult to tell if there is an association of any sort because there are so few observations. For those who overinteracted, it was surprising that so many users who identified as male. I might be a bit biased, but generally, those who often are on social media the most are female... so this could indicate a platform difference or just a difference in overall distribution amongst the observed users.
+For those who underinteracted, it is difficult to tell if there is an association of any sort because there are so few observations in comparison to the sample size. Among those who over-interacted, the majority were male. I personally found this interesting, as many of the most active users I find on social media platforms are female. This could indicate a platform difference (as I, myself, am female), but would need further exploration. 
 
 ### Age
 
 ![Distribution in Age of Over-Active Users](figures/overinteract_age.png)
 ![Distribution of Age of Under-Active Users](figures/underinteract_age.png)
 
-The histogram of the distribution of ages for over-interactive users displays a general trend towards the younger ages, with a right tail. This trend is generally as expected given the heavier use of technology (especially social media) amongst the younger (but not too young) population. As seen in the histogram, the largest number of over-interactive users are between 20-30 years old. The majority of this population are typically very well versed in social media platforms and have access to such platforms. People of older ages often use social media less and those of ages less than 13 might have parental restrictions thus causing this distribution. The age distribution of those who under-interact are more difficult to establish reasoning or a pattern for. This is in part due to the limited number of users who are under-interacting to the point of being 'outliers'. With so few observations, the distribution of age in users who under-interact could be purely by chance. In addition to the factors already mentioned, it is important to keep in mind the overall distribution of ages within the entire dataset. While the raw numbers of those ages 20-30 look high in comparison to the other ages, it is very possible that amongst the users observed within the entire dataset, there is an over-representation of users in that age range.
+The histogram of the distribution of ages for over-interactive users displays a general trend towards the younger ages, with a right tail. This trend is generally as expected given the heavier use of technology (especially social media) among the younger (but not too young) population. As seen in the histogram, the largest number of over-interactive users are between 20-30 years old. The majority of this population are typically active on social media platforms and have unrestricted access to such platforms. People of older ages often use social media less and those of ages less than 13 might have parental restrictions thus causing this distribution. The age distribution of those who under-interact are more difficult to establish reasoning or a pattern for. This is in part due to the limited number of users who are under-interacting to the point of being 'outliers'. With so few observations, the distribution of age in users who under-interact could be purely by chance. In addition to the factors already mentioned, it is important to keep in mind the overall distribution of ages within the entire dataset. While the raw numbers of those ages 20-30 look high in comparison to the other ages, it is very possible that amongst the users observed within the entire dataset, there is an over-representation of users in that age range.
 
 ### Country
 
@@ -77,11 +81,11 @@ Following from the note on the distribution of the original dataset, in looking 
 
 ![Distribution of Country of Origin Among Under-Active Users](figures/underinteract_country.png)
 
-As seen here, while there is a significant raw count of people from the US who are over-interactive, the proportion of users from the US who were over-interactive is about average amongst the 10 countries. In particular, the proportion of users from Brazil and Mexico who were over-interactive were slightly higher than the others. Amongst those who were under-interactive, it would seem as though those from Canada and Mexico were slightly more than the others. This being said, the generalization of such a pattern would need further analysis.
+As seen here, while there is a significant raw count of people from the US who are over-interactive, the proportion of users from the US who were over-interactive is about average among the 10 countries. In particular, the proportion of users from Brazil and Mexico who were over-interactive were slightly higher than the others. Amongst those who were under-interactive, it would seem as though those from Canada and Mexico were slightly more than the others. This being said, the generalization of such a pattern would need further analysis.
 
 ### Interests
 
-I wanted to see whether one particular interest was significantly dominant among users who over-interact and under-interact.
+In terms of interests, I was curious about whether one particular interest was significantly dominant among users who over-interact and under-interact.
 
 ![Interests of Over-Active Users](figures/overinteract_interests.png)
 ![Interests of Under-Active Users](figures/underinteract_interests.png)
@@ -89,116 +93,115 @@ I wanted to see whether one particular interest was significantly dominant among
 The raw numbers do not display a significant number of users with one interest or another in either over-interactive users or under-interactive users. There could be an exploration into proportion of users with these interests that are outliers, but as of right now, I believe the distributions displayed by the bar charts are sufficient for determining no one interest is overwhelmingly dominant in either over-interactive nor under-interactive users.
 
 ## 0.2
-Just to get a general idea of the data that I will be working with, this next section of the EDA will just be looking at the distribution of interests among users. I am also looking for class imbalances with this category as it will affect the other sections of analysis.
+Just to get a general idea of the datasets, this section of the EDA will be looking at the distribution of interests among users. I am particularly looking for any class imbalances with this categorical variable, as it will affect the other sections of analysis.
 
 ![Overall Distribution of User Interests](figures/interact_interests_total.png)
 
-It seems as though overall, there is no single interest that is significantly dominant/ overwhelming over the others.
+Overall, there is no single interest that is significantly dominant or overwhelming over the others.
 
 ## 0.3
-In the same way, I wanted to look at age distributions in case I decide to do something more interesting with this variable later.
+In the same way, I looked at age distributions, both for class imbalances and for later analysis.
 
 ![User Age Distribution](figures/user_age_group_distr.png)
 
-For now, just looking at the age group distribution is sufficient. The previously mention suspicion of the age groups being pretty different are in fact verified by this barchart.
+For now, the bar chart of the age group distribution is sufficient. The previously mention of the age groups being pretty different are in fact verified by this barchart.
 
-# Question 1: Target Genders
+# Analysis Section 1: Are Ads Reaching their Target Genders?
 
-Initially, I wanted to just peek at the raw counts in terms of number of interactions with ads based on gender. The full table is 200 rows (1 for each ad), but I chose to just show the first few observations.
+Initially, I generated the raw counts in terms of number of interactions with ads based on gender. The full table is 200 rows (1 for each ad), but this table only shows the first few observations.
 
 ![Target Gender of the First Six Ads](figures/targetvsuser_gender_table.png)
 
-It seems like consistently, whether or not the add targeted males or females, males interacted a lot more in comparison to that of females. This might be attributed to the distribution in gender amongst the observed users-- males might just happen to be the majority within the dataset. We saw this earlier in the outlier deepdive as a possible cause. Just to examine this distribution:
+Consistently, whether or not the add targeted males or females, males interacted a lot more in comparison to that of females. This might be attributed to the distribution in gender amongst the observed users-- males might just happen to be the majority within the dataset. This was seen earlier in the outlier deep-dive as a possible cause. Just to examine this distribution:
 
 ![Distribution of User Gender](figures/gender_table.png)
 
-So, it does seem as though there is a pretty large difference in terms of counts of users among the three categories of gender. Thus, it may make more sense for us to look at the proportion of users interacting with these ads when looking at gender. Wait... I had almost forgotten, users can likely interact with the same ad multiple times. It might be wise to look at both unique users interacting with the ad.
+From the table above, it does seem as though there is a significant difference in the counts of users among the three categories of gender. Thus, it may make more sense for us to look at the proportion of users interacting with these ads when looking at gender. Because users can likely interact with the same ad multiple times, it will be more meaningful to look at unique users interacting with the ads.
 
-Here is the plan: I will endeavor to make a plot of unique user, with the X axis as proportion of males, Y axis as proportion of females, legend as the target gender.
+To visualize this, below is a plot of unique user, with the X axis as proportion of males, Y axis as proportion of females, legend as the target gender.
 
 
 ![Proportion of Male and Females Reached by Ads](figures/target_gender_vs_user_gender.png)
 
-In general, I think based on individual users and their distribution in gender, no one gender is proportionally speaking overinteracting with any one add in any overwhelming amount.
+Based on individual users and their distribution in gender, no one gender is proportionally speaking overinteracting with any one add in any overwhelming amount.
 
-# Question 2: Target Interests
+# Analysis Section 2: Are Ads Successful in Drawing in Their Target Interests?
 
-On a similar note to question 1 above I wanted to explore how effective ads were in drawing in people of their target interests. I took two approaches: one where I used random forest models with each distinct user's interests as the set of predictors and the other where I took an average of the interests of these distinct users and used the averages of interests as predictors for the ads' target interests. This technically could have been done with the target genders as well, but I believe the scatterplot is enough to display the presence of no significant pattern.
+On a similar note to the previous section, I wanted to explore how effective ads were in drawing in people of their target interests. I took two approaches: one where I used random forest models with each distinct user's interests as the set of predictors and the other where I took an average of the interests of these distinct users and used the averages of interests as predictors for the ads' target interests. 
 
 ## Approach 1: Building Random Forest Models with Distinct User Interests as Predictors
 
-To prep the data, I first narrowed in on the distinct users that interacted with each ad and took note of the set of interests as well as the set of interests that the ad was targeting. I split the resulting data into a train-test split of 80-20. I used the train dataset to train 13 different random forest models where each model's response was one of the potential target interests. Because there were severe class imbalances present in the response, I used a balanced sample size to train each model where the number of predictors considered at a time was 3. I then tested each of these models via the test dataset and the resulting confusion matrices are below.
+To prep the data, I first narrowed in on the unique users that interacted with each ad and took note of the set of interests as well as the set of interests that the ad was targeting. I split the resulting data into a train-test split of 80-20. The train dataset was then used to train 13 different random forest models where each model's response was one of the potential target interests. Because there were severe class imbalances present in the response, I used a balanced sample size to train each model with the number of predictors considered at a time set to 3. I then tested each of these models via the test dataset and the resulting confusion matrices are below.
 
 ![Using User Interests to Predict Target Interests: Confusion Matrices of the Resulting Random Forest Models](figures/confusion_matrix_grid.png)
 
-Just from looking at these matrices, it seems as though the models do not perform as ideally as we would like them to. Just to verify our conclusion, I also ended up looking at the AUC plots.
+From these matrices, it seems as though the models do not perform very well. Just to verify this conclusion, below are the ROC curves for the models.
 
 ![ROC Curves of the 13 Random Forest Models](figures/interest_ROC.png)
 
-It seems as though out of all of the models, the one for target_health had the best performance. Overall, from looking at both the confusion matrices, the user interests of those who interacted with ads do not reflect that of the target interest. Just as part of a deepdive, I looked at the model for health specifically to see which user interests were good predictors for it.
+Out of all of the models, the one for target_health seemed to have had the best performance. Overall, from looking at both the confusion matrices, the user interests of those who interacted with ads do not reflect that of the target interest. Out of curiosity, I looked at the model for health specifically to see which user interests were good predictors for it.
 
 ![Variable Importance Plot for Target_Health](figures/health_varimpplot.png)
 
-It seems as though the top user interests that predict target_health includes user_health, but not as the 'best' predictor. I will now take a different approach, where I take each observation within the train and test data to be an ad and then average the interests of the users who interacted with each ad as an attribute of the ad. Maybe that might help in seeing whether user interests are related to the target interest?
+While the top user interests that predict target_health includes user_health, it is not the 'best' predictor. As a second approach, I took each observation within the train and test data to be an ad and then averaged the interests of the users who interacted with each ad as an attribute of the ad. 
 
 ## Random Forest Models with Averages of User Interests 
 
-In the data here, I grouped by ad_id and then took the average of the interests of users who interacted with each ad. The resulting data has 200 observations, one for each ad. I then split the data into an 80-20 train-test split, and trained random forest models for each of the 13 target interests. Below I have the resulting confusion matrices:
+The original data was transformed for this approach by first grouping the interaction data by ad id and then taking the averages of user interests. The resulting dataset had 200 observations, one for each ad. It was then split into an 80-20 train-test split, and trained random forest models for each of the 13 target interests. Below are the resulting confusion matrices:
 
 ![Averaging User Interests to Predict Target Interests: Confusion Matrix Results from 13 Random Forest Models](figures/average_interest_confusion_matrix_grid.png)
 
-This is a smaller dataset, so numbers within the confusion matrices are not as comparable to the confusion matrices of the performances of the models that were trained on data from distinct users. Thus, I also plotted the AUC curves for these models as seen below.
+This is a smaller dataset, so numbers within the confusion matrices are not comparable in magnitude to the confusion matrices of the performances of the previous approach. Thus, the AUC curves for these 13 models are plotted below for better comparison.
 
 ![ROC Curves of the 13 Models](figures/average_interest_ROC.png)
 
-So, it seems as though some of these models did do fairly well in terms of using user interests to predict the target interests. Just out of curiosity, I produced a variable importance plot for the target_travel model.
+From these curves, it seems as though some of these models did fairly well in terms of using user interests to predict the target interests. Just out of curiosity, a variable importance plot for the target_travel model was produced to identify which predictors were the most influential.
 
 ![Variable Importance Plot for Target_Travel](figures/travel_varimpplot.png)
 
-This is a very interesting result. It seems as though, from the model, ads targeting travel happened to attract users with an interest in fashion. Despite this, overall, when considering the models as a whole, user interests alone are unreliable when predicting the target interests of ads.
+From the variable importances, it seems like overall, user interests alone are unreliable for predicting the target interests of ads.
 
-# Question 3: Interactions vs Campaign Budget
+# Analysis Section 3: Does a Larger Budget Yield Higher Interaction Counts?
 
-This second section of analysis looks into whether budget of the campaign affects the number of interactions with the ads within that campaign. I first looked at changing the data in such a way to balance out the different durations of the campaigns, thus I grouped the data by campaigns and looked at interactions per day and budget per day rather than total budget and total interactions. I then plotted the results via a scatterplot, but was still curious to see whether there was a pattern in the duration of the campaigns, so I used a scale of duration as the color for the legend of the points.
+This third section of analysis looks into whether budget of the campaign affects the number of interactions with the ads within that campaign. The data first had to be changed to balance out the different durations of the campaigns. Thus, the original campaign data was first grouped by campaigns and then interactions per day and budget per day values were calculated for each campaign. The results were then visualized with the scatter-plot below. To still account for whether there was a relationship between interaction counts and the duration of the campaigns, a scale of duration as the color for the legend of the points was used.
 
 ![Scatterplot of Interactions Per Day vs Budget Per Day by Campaign Duration](figures/interactions_vs_budget.png)
 
-It looks like while most campaigns are within a similar interactions per day count and budget per day, there are three points that stray a bit differently. Based on the coloring of these points, all three seem to be on the shorter duration side. I ended up just out of curiosity building a basic linear model with the interactions per day as the response and budget per day as the predictor. It did not end up being significant, so I excluded results here. Other confounding factors here could be the number of ads each campaign has.
+While most campaigns are within a similar interactions per day count and budget per day, there are three points that stray a bit differently. Based on the coloring of these points, all three seem to be on the shorter duration side.  Other confounding factors here could be the number of ads each campaign has.
 
 ![Count of Ads Distribution Among Campaigns](figures/campaign_ad_count.png)
 
-As seen here, there is evidence that the number of ads per campaign differs. Thus, one future area of exploration would be looking at whether there is a relationship between ad count and number of interactions.
+As seen above, the number of ads per campaign differs. Thus, one future area of exploration would be looking at whether there is a relationship between ad count and number of interactions.
 
-# Question 4: Clustering Users
+# Analysis Section 4: Can Users Be Grouped?
 
-I now want to see if the users can be clustered into groups-- kind of working upon the theory that users are not all unique and that they can be classified into different categories. We've seen this done in class and in datasets like Netflix.
+In this section, I explored the potention for the users to be clustered into groups, working upon the theory that users are not all unique. I have seen this done in class and in datasets like the Netflix recommender system.
 
-I first prepared the data for clustering by eliminating three variables: `user_id`, `user_age`, and `location`. I eliminated `user_age` due to the overlap with `age_group`, and `location` due to the specificity and opted instead for use of the variable `country`. I then used entropy to determine the number of k-modes clusters present within the dataset. Based on the plot below, I found that the last largest drop in entropy was at a cluster number k = 8. Thus, the rest of this analysis proceeds with this assumption.
+The data was prepared for clustering by eliminating three variables: `user_id`, `user_age`, and `location`. I eliminated `user_age` due to the overlap with `age_group`, and `location` due to the specificity and opted instead for use of the more generalized variable `country`. I then used entropy to determine the number of k-modes clusters present within the dataset. Based on the plot below, I found that the last sharpest drop in entropy was at a cluster number k = 8. Thus, the rest of this analysis proceeds with this assumption.
 
 ![Entropy vs Number of Clusters](figures/entropy_plot.png)
 
-I first used the first two dimensions of MCA (the categorical version of PCA) to visualize results, but the visualization was unhelpful, so I opted to use t-SNE paired with Gower's distance instead.
+I first used the first two dimensions of MCA (the categorical version of PCA) to visualize results, but the visualization was unhelpful, so I opted to use t-SNE paired with Gower's distance instead to visualize the clusters.
 
 ![t-SNE plots of the 8 Clusters](figures/tsne_plot.png)
-While the clusters do overlap, the modes of these clusters in higher dimensions do present unique groups of individuals in terms of gender, age group, country, and interests.
+While the clusters do overlap in 2-D, the modes of these clusters in higher dimensions do present unique groups of individuals in terms of gender, age group, country, and interests. Thus, users do seem to fit into categories.
 
 ## Agglomerative Hierarchical Clustering
 
-From previous classes, I know that hierarchical clustering is pretty popular. For this data set, I chose to do agglomerative hierarchical clustering to see if I would get different results from that of k-modes. I first used the silhouette statistic to obtain the ideal number of clusters. The plot showing the silhouette statistics of each cluster size is presented here:
+Another approach to clustering is hierarchical clustering. For this data set, I chose to do agglomerative hierarchical clustering to see if I would get different results from that of k-modes. I first used the silhouette statistic to obtain the ideal number of clusters. The plot showing the silhouette statistics of each cluster size is presented here:
 
 ![Silhouette Width vs Number of Clusters](figures/silhouette_width.png)
 
-As seen in the plot, the silhouette widths peak at 13 before dropping. Thus, I chose k = 13 for my hierarchical clusters. In terms of visualizing the clusters, I opted to use a t-SNE plot again because the data has high dimensions. This is shown in the figure below.
+As seen in the plot, the silhouette widths peak at 13 before dropping. Thus, I chose k = 13 for my hierarchical clusters. In terms of visualizing the clusters, I opted to use a t-SNE plot because the data is in higher dimensions. This is shown in the figure below.
 
 ![t-SNE plots of the 13 Clusters](figures/tsne_aggclus.png)
 
-
 # Future Areas of Exploration:
 
-In terms of extensions to this project, I would like to explore these questions about the data:
+For extensions of this project, these questions about the data could be explored:
 
 5) What relationships between platform, type of ad, and interactions and type of user?
 6) Is there a relationship between type of user and time of day?
 7) Is there a relationship between platform and location of user?
-4) How does summer, winter/ seasons differ in terms of ad interactions? Are there differences between the seasons? *** Be careful about the seasons, because the dates do not match up. It might be better to split as some sort of month or quarter intervals.
+4) How does summer, winter/ seasons differ in terms of ad interactions? Are there differences between the seasons? *** Use caution with the seasons, because the dates do not match up. It might be wise to split this variable into month or quarter intervals.
 
