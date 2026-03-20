@@ -1,6 +1,6 @@
 READ FIRST: 
 
-This project was originally completed as the final project to a class (BIOS 611) at UNC-CH. This was an individual project and has since been edited to showcase the skills I have developed in R.
+This project was originally completed as the final project to a class (BIOS 611) at UNC-CH. This was an individual project and has since been edited to primarily showcase the skills I have developed in R.
 ==========================================================================================
 
 Maximizing Impact: Social Media Campaign Effectiveness
