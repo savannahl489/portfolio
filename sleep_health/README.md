@@ -26,6 +26,8 @@ Data Description: 374 observations of 13 variables. Most variables are self expl
 
 - Stress Level: Individuals provided ratings ranging between 3 and 8. The assumption, like with Quality of Sleep, is that the true scale was between 1-10, where 1 is not stressed and 10 is extremely stressed. 
 
+- Sleep Duration: While no units nor ranges are provided in the data description, the assumption will be that units are hours and values range between 0-15.
+
 
 =============================================================================
 
