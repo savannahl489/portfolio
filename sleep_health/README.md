@@ -36,3 +36,7 @@ How this project is organized (continuously updated):
 - Initial brainstorming and informal EDA is contained within the Jupyter Notebook 'Initial_EDA_and_Brainstorming' with the data described above. At the end of the notebook, there was a note made about how the data might be a little too clean / manufactured. Thus, the analysis for this project onwards will be on the new data: "Sleep_health_and_lifestyle_dataset.csv"
 
 - Second EDA: Contains the formalized EDA for the "Sleep_health_and_lifestyle_dataset.csv"; finished as of 4/25/2026
+
+- Analysis Framework: This document would be an internal/ personal document to reason through the potential targets for analysis. ONGOING
+
+- Primary Analysis: An internal/ personal Jupyter notebook to document analysis on the primary questions documented in the analysis framework. ONGOING
